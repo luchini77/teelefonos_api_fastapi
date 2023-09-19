@@ -3,7 +3,6 @@ from typing import Optional
 
 
 class Telefono(BaseModel):
-    id: Optional[int] = None
     nivel: str
     ubicacion: str
     telefono: str
@@ -23,3 +22,11 @@ class Telefono(BaseModel):
                 'informacion':'sin novedad'
             }
         }
+
+class TelefonoUpdate(BaseModel):
+    nivel: str = None
+    ubicacion: str = None
+    telefono: str = None
+    num_telefono: str = None
+    estado: str = None
+    informacion: str = None

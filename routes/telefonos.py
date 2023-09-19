@@ -6,7 +6,7 @@ from sqlalchemy.orm import Session
 
 from repositorio import crud
 #from models.telefono_modelo import Telefono as TelModel
-from schema.telefono_schema import Telefono as TelSche
+from schema.telefono_schema import TelefonoUpdate, Telefono as TelSche
 from config.base_datos import sesion, motor, base, get_db
 
 
@@ -35,11 +35,11 @@ def agregar_telefono(telefono: TelSche, db: Session=Depends(get_db)):
 
 #ACTUALIZA UN TELEFONO
 @router_fono.put('/{id}', status_code=status.HTTP_200_OK)
-def actualiza_telefono(id:int, telefono: TelSche, db: Session=Depends(get_db)):
-    respuesta = crud.update(id, telefono, db)
+def actualiza_telefono(id:int, update_fono: TelefonoUpdate, db: Session=Depends(get_db)):
+    respuesta = crud.actualizar(id, update_fono, db)
     return respuesta
 
-
+#ELIMINAR UN TELEFONO
 @router_fono.delete('/{id}', status_code=status.HTTP_200_OK)
 def borrar_telefono(id:int, db: Session=Depends(get_db)):
 

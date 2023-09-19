@@ -1,4 +1,6 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Integer, String, DateTime
+from sqlalchemy.sql import func
+
 from config.base_datos import base
 
 class Telefono(base):
@@ -10,3 +12,5 @@ class Telefono(base):
     num_telefono = Column(String)
     estado = Column(String)
     informacion = Column(String)
+    creada = Column(DateTime(timezone=True), server_default=func.now())
+    actualizada = Column(DateTime(timezone=True), onupdate=func.now())

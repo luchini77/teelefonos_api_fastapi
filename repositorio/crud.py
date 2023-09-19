@@ -2,7 +2,6 @@ from fastapi import HTTPException, status
 from sqlalchemy.orm import Session
 
 from models.telefono_modelo import Telefono
-from schema.telefono_schema import Telefono as Fono
 
 
 def get_all(db: Session):
@@ -38,15 +37,15 @@ def create(telefono, db: Session):
         raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail=f'error creando usuario {e}')
 
 
-def update(id: int, telefono: Fono, db: Session):
+def actualizar(id, update_fono, db: Session):
     telefonodb = get_by_id(id, db)
 
-    telefonodb.nivel = telefono.nivel
-    telefonodb.ubicacion = telefono.ubicacion
-    telefonodb.telefono = telefono.telefono
-    telefonodb.num_telefono = telefono.num_telefono
-    telefonodb.estado = telefono.estado
-    telefonodb.informacion = telefono.informacion
+    telefonodb.nivel = update_fono.nivel
+    telefonodb.ubicacion = update_fono.ubicacion
+    telefonodb.telefono = update_fono.telefono
+    telefonodb.num_telefono = update_fono.num_telefono
+    telefonodb.estado = update_fono.estado
+    telefonodb.informacion = update_fono.informacion
 
     db.add(telefonodb)
     db.commit()
